@@ -1,0 +1,63 @@
+{
+  "jurisdiction": "India",
+  "region_code": "IN",
+  "document_type": "lease",
+  "last_reviewed": "2026-09-22",
+  "coverage_note": "India does NOT have a single uniform national tenancy law. Land and tenancy are State subjects under the Indian Constitution. The Model Tenancy Act (MTA), 2021 is a TEMPLATE law released by the central government for states to voluntarily adopt or adapt — it is not automatically binding nationwide. Actual rules vary significantly by state and even by city, and many states still rely on older, state-specific Rent Control Acts. Treat every entry below as directional and non-exhaustive, not as confirmation of what applies to a specific user's property.",
+  "known_misinformation_warning": "As of review date, multiple online articles claim Karnataka enacted a statutory 2-month security deposit cap via the 'Karnataka Rent (Amendment) Act, 2025' / 'New Rent Rules 2026'. This appears to be a widely-repeated but inaccurate claim: the actual amendment (decriminalizing offences under the Karnataka Rent Act, 1999, and shifting enforcement to the Rent Controller) does not include a deposit cap. Do not assert a Karnataka deposit cap as settled fact; flag it as disputed/unverified if the topic comes up.",
+  "concepts": [
+    {
+      "concept_id": "security_deposit",
+      "summary": "Security deposit norms vary by state and are largely market/contract-driven outside of jurisdictions that have adopted the Model Tenancy Act.",
+      "details": [
+        "The Model Tenancy Act (as a template, adopted only in some states/UTs) proposes a cap of a maximum of 2 months' rent for residential properties and up to 6 months' rent for commercial properties, where it has been adopted.",
+        "In practice, deposits historically ranged much higher in major metros — commonly 6-11 months in cities like Bengaluru and Mumbai — before any MTA-style caps existed, and many landlords/localities still follow older market norms rather than the MTA figure.",
+        "Delhi: the Delhi Rent Control Act, 1958 only applies to units renting below roughly ₹3,500/month; most present-day rentals fall outside this and are governed purely by the private contract, with no strict statutory deposit cap for the majority of stock. Typical practice is 2-3 months, sometimes higher for premium/furnished units.",
+        "West Bengal (Kolkata): under the West Bengal Premises Tenancy Act, 1997, deposit amount is contractual with no strict statutory cap; 1-3 months is common practice.",
+        "Most other states (e.g. Rajasthan, Gujarat, Telangana, Madhya Pradesh, Punjab): largely governed by older, state-specific Rent Control Acts or by contract; deposit amount is typically 2-6 months and varies heavily by city and property type."
+      ],
+      "confidence": "low-to-medium — figures differ by source and state adoption status; user should confirm which law (if any) governs their specific state/city and check for recent amendments."
+    },
+    {
+      "concept_id": "notice_period_termination",
+      "summary": "Notice period for ending a tenancy is typically set by the lease agreement itself, within bounds set by applicable state law where a Rent Control Act or the MTA applies.",
+      "details": [
+        "Where the Model Tenancy Act applies, rent revisions are generally limited to once every 12 months and require prior written notice as specified in the agreement; a Rent Authority/Court can intervene where notice or process is not followed.",
+        "Where the MTA does not apply, notice periods for termination or non-renewal are primarily governed by the lease's own termination clause and, in the absence of specific terms, by the Transfer of Property Act, 1882 (commonly a 15-day or one-month default notice period depending on the nature of the tenancy, subject to the lease terms and any state-specific Rent Control Act)."
+      ],
+      "confidence": "low — highly dependent on the specific state's law and the tenancy's classification; flag this as an area to verify locally rather than asserting a specific number."
+    },
+    {
+      "concept_id": "deposit_return_timeline",
+      "summary": "Where the Model Tenancy Act applies, it proposes a specific return timeline for the deposit after vacancy.",
+      "details": [
+        "The Model Tenancy Act proposes that landlords return the full security deposit within one month of the tenant vacating the property, in jurisdictions that have adopted it.",
+        "Outside MTA-adopting jurisdictions, no uniform statutory timeline exists; the lease's own terms (or general contract law principles) govern, and disputes are common in practice."
+      ],
+      "confidence": "low-to-medium"
+    },
+    {
+      "concept_id": "landlord_entry_notice",
+      "summary": "Where the Model Tenancy Act applies, entry for repairs requires advance written notice.",
+      "details": [
+        "Under the Model Tenancy Act (where adopted), a landlord generally cannot enter rented premises without at least 24 hours' prior written notice, and visits are typically expected within reasonable daytime hours (commonly cited as 7 AM-8 PM)."
+      ],
+      "confidence": "medium, but only where MTA has been adopted by the relevant state"
+    },
+    {
+      "concept_id": "eviction_grounds",
+      "summary": "Eviction generally requires legal process, not self-help by the landlord.",
+      "details": [
+        "Under the Model Tenancy Act (where adopted), non-payment of rent for a specified period (commonly cited as two months) can be grounds for eviction proceedings before a Rent Court/Authority, not unilateral lockout.",
+        "Outside MTA jurisdictions, eviction grounds and process are governed by the applicable state Rent Control Act or, for uncontrolled tenancies, general civil law — self-help eviction (changing locks, cutting utilities) is broadly discouraged/unlawful across Indian jurisdictions regardless of which specific law applies."
+      ],
+      "confidence": "low — grounds and process vary significantly by state; always flag as 'verify locally'."
+    }
+  ],
+  "always_recommend_verifying": [
+    "Which specific state/city law governs this tenancy (state Rent Control Act vs. Model Tenancy Act vs. pure contract law)",
+    "Whether the state has adopted the Model Tenancy Act, 2021 or a variant of it, and any subsequent state amendments",
+    "Current security deposit norms and any statutory cap for that specific state/city",
+    "The registration requirement for the lease itself (many states require registration above certain rent/duration thresholds, with legal consequences for unregistered agreements)"
+  ]
+}

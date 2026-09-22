@@ -1,0 +1,69 @@
+{
+  "document_type": "other",
+  "description": "Generic legal document — used as a fallback when the document type doesn't match a specific taxonomy",
+  "clauses": [
+    {
+      "name": "Parties",
+      "description": "Who are the parties to this agreement and their roles",
+      "risk_factors": {
+        "high": ["Parties not clearly identified"],
+        "medium": ["One party is a shell entity or unclear corporate structure"],
+        "low": ["All parties clearly identified with roles defined"]
+      }
+    },
+    {
+      "name": "Obligations",
+      "description": "Key obligations of each party under the agreement",
+      "risk_factors": {
+        "high": ["Obligations are one-sided or vague", "Open-ended performance requirements"],
+        "medium": ["Some obligations lack specificity"],
+        "low": ["Clear, balanced, and specific obligations for all parties"]
+      }
+    },
+    {
+      "name": "Term and Duration",
+      "description": "How long the agreement lasts",
+      "risk_factors": {
+        "high": ["No defined term — perpetual by default", "Auto-renewal with no opt-out"],
+        "medium": ["Long term with limited exit options"],
+        "low": ["Clear fixed term with reasonable renewal provisions"]
+      }
+    },
+    {
+      "name": "Termination",
+      "description": "How the agreement can be ended",
+      "risk_factors": {
+        "high": ["Only one party can terminate", "No termination clause at all"],
+        "medium": ["Termination allowed but with excessive penalties"],
+        "low": ["Balanced termination rights with reasonable notice"]
+      }
+    },
+    {
+      "name": "Liability and Indemnification",
+      "description": "Limitations on liability and indemnification obligations",
+      "risk_factors": {
+        "high": ["One party has unlimited liability while the other has none", "Broad indemnification without cap"],
+        "medium": ["Standard limitation of liability with some gaps"],
+        "low": ["Balanced, reasonable liability provisions"]
+      }
+    },
+    {
+      "name": "Dispute Resolution",
+      "description": "How disputes are handled",
+      "risk_factors": {
+        "high": ["Mandatory arbitration in distant jurisdiction", "Waiver of class action rights"],
+        "medium": ["Mandatory arbitration but in reasonable location"],
+        "low": ["Mediation first, then standard legal process"]
+      }
+    },
+    {
+      "name": "Governing Law",
+      "description": "Which jurisdiction's laws apply to this agreement",
+      "risk_factors": {
+        "high": ["Governing law in unfamiliar or distant jurisdiction"],
+        "medium": ["No governing law specified"],
+        "low": ["Governing law in a relevant, accessible jurisdiction"]
+      }
+    }
+  ]
+}

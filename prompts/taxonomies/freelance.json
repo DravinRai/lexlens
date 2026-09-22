@@ -1,0 +1,87 @@
+{
+  "document_type": "freelance",
+  "description": "Freelance agreement, independent contractor agreement, or services agreement",
+  "clauses": [
+    {
+      "name": "Scope of Work",
+      "description": "What services the freelancer/contractor will provide",
+      "risk_factors": {
+        "high": ["Scope is vague or open-ended ('any tasks as assigned')", "No clear deliverables defined"],
+        "medium": ["Scope is broad but bounded"],
+        "low": ["Clear, specific deliverables with defined acceptance criteria"]
+      }
+    },
+    {
+      "name": "Compensation and Payment Terms",
+      "description": "How much, when, and how the freelancer gets paid",
+      "risk_factors": {
+        "high": ["Payment contingent on subjective client satisfaction", "No payment timeline specified", "Payment only after full project completion with no milestones"],
+        "medium": ["Net-60+ payment terms", "No late payment penalties"],
+        "low": ["Clear rates, milestone-based payments, net-30 or better, late payment provisions"]
+      }
+    },
+    {
+      "name": "Intellectual Property Ownership",
+      "description": "Who owns the work product created under the agreement",
+      "risk_factors": {
+        "high": ["All IP transfers to client including tools, templates, and pre-existing work", "No license-back for portfolio use"],
+        "medium": ["Work product transfers but freelancer retains right to use for portfolio"],
+        "low": ["Clear IP assignment of deliverables only, with pre-existing IP carve-out and portfolio rights"]
+      }
+    },
+    {
+      "name": "Confidentiality",
+      "description": "Obligations around client's confidential information",
+      "risk_factors": {
+        "high": ["Extremely broad definition", "Indefinite duration", "No standard exclusions"],
+        "medium": ["Broad but with standard exclusions and reasonable duration"],
+        "low": ["Clearly scoped with standard exclusions and limited duration"]
+      }
+    },
+    {
+      "name": "Termination",
+      "description": "How either party can end the engagement",
+      "risk_factors": {
+        "high": ["Client can terminate without payment for completed work", "No kill fee or wind-down provisions"],
+        "medium": ["Termination allowed with short notice but payment for completed work"],
+        "low": ["Balanced termination with reasonable notice, payment for completed work, and kill fee"]
+      }
+    },
+    {
+      "name": "Liability and Indemnification",
+      "description": "Limits on liability and indemnification obligations",
+      "risk_factors": {
+        "high": ["Freelancer has unlimited liability", "Must indemnify for client's own negligence", "No liability cap"],
+        "medium": ["Standard mutual indemnification with liability cap at fees paid"],
+        "low": ["Reasonable liability cap, mutual indemnification limited to breach"]
+      }
+    },
+    {
+      "name": "Independent Contractor Status",
+      "description": "Confirmation that freelancer is not an employee",
+      "risk_factors": {
+        "high": ["No independent contractor clause at all", "Terms resemble employment (set hours, exclusive engagement, provided equipment)"],
+        "medium": ["Independent contractor stated but some terms may blur the line"],
+        "low": ["Clear independent contractor language consistent with actual working arrangement"]
+      }
+    },
+    {
+      "name": "Insurance Requirements",
+      "description": "Whether the freelancer must carry specific insurance",
+      "risk_factors": {
+        "high": ["Excessive insurance requirements disproportionate to the engagement"],
+        "medium": ["Standard professional liability insurance required"],
+        "low": ["Reasonable or no insurance requirements"]
+      }
+    },
+    {
+      "name": "Governing Law",
+      "description": "Which jurisdiction's laws govern the agreement",
+      "risk_factors": {
+        "high": ["Governing law in a distant or unfamiliar jurisdiction"],
+        "medium": ["No governing law specified"],
+        "low": ["Governing law in a mutually convenient jurisdiction"]
+      }
+    }
+  ]
+}

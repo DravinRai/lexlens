@@ -1,0 +1,87 @@
+{
+  "document_type": "nda",
+  "description": "Non-disclosure agreement or confidentiality agreement",
+  "clauses": [
+    {
+      "name": "Definition of Confidential Information",
+      "description": "What information is considered confidential under this agreement",
+      "risk_factors": {
+        "high": ["Extremely broad definition covering virtually any information", "Includes information not yet created", "No written/marking requirement"],
+        "medium": ["Broad definition but limited to business-related information"],
+        "low": ["Clearly defined categories with specific examples"]
+      }
+    },
+    {
+      "name": "Exclusions from Confidentiality",
+      "description": "What information is NOT considered confidential",
+      "risk_factors": {
+        "high": ["No exclusions defined at all", "Missing standard exclusions (public knowledge, prior possession)"],
+        "medium": ["Exclusions exist but are narrowly defined"],
+        "low": ["Standard exclusions: publicly available, independently developed, prior knowledge, third-party disclosure"]
+      }
+    },
+    {
+      "name": "Obligations of Receiving Party",
+      "description": "What the receiving party must do to protect confidential information",
+      "risk_factors": {
+        "high": ["Absolute liability for any disclosure regardless of fault", "Must destroy all copies with no retention right"],
+        "medium": ["Standard of care higher than 'reasonable'"],
+        "low": ["Reasonable care standard, similar to own confidential information"]
+      }
+    },
+    {
+      "name": "Term and Duration",
+      "description": "How long the NDA and confidentiality obligations last",
+      "risk_factors": {
+        "high": ["Perpetual/indefinite obligations with no expiration", "No clear start date"],
+        "medium": ["Long duration (>5 years) but finite"],
+        "low": ["Reasonable duration (1-3 years) with clear start and end"]
+      }
+    },
+    {
+      "name": "Return or Destruction of Information",
+      "description": "What happens to confidential information when the NDA ends",
+      "risk_factors": {
+        "high": ["No provision for return/destruction", "Must certify destruction of all copies including backups"],
+        "medium": ["Return required but no timeline specified"],
+        "low": ["Clear return/destruction process with reasonable timeline"]
+      }
+    },
+    {
+      "name": "Permitted Disclosures",
+      "description": "When and to whom confidential information can be shared",
+      "risk_factors": {
+        "high": ["No permitted disclosures, even to own legal counsel", "No carve-out for legally compelled disclosure"],
+        "medium": ["Limited permitted disclosures, must notify disclosing party first"],
+        "low": ["Reasonable permitted disclosures including legal counsel, advisors, and legally compelled disclosures"]
+      }
+    },
+    {
+      "name": "Remedies for Breach",
+      "description": "Consequences of breaching the NDA",
+      "risk_factors": {
+        "high": ["Liquidated damages amount is disproportionate", "Automatic injunctive relief without court process"],
+        "medium": ["Injunctive relief acknowledged as appropriate remedy"],
+        "low": ["Standard remedies including injunctive relief and damages as determined by court"]
+      }
+    },
+    {
+      "name": "Non-Solicitation",
+      "description": "Whether the NDA includes restrictions on soliciting employees or customers",
+      "risk_factors": {
+        "high": ["Broad non-solicitation bundled into an NDA without separate consideration", "Covers any employee or customer contact"],
+        "medium": ["Non-solicitation limited to key contacts for reasonable period"],
+        "low": ["No non-solicitation clause, or very narrowly scoped"]
+      }
+    },
+    {
+      "name": "Governing Law",
+      "description": "Which jurisdiction's laws govern the agreement",
+      "risk_factors": {
+        "high": ["Governing law is a distant or unfamiliar jurisdiction"],
+        "medium": ["No governing law specified"],
+        "low": ["Governing law is the receiving party's home jurisdiction or mutually convenient"]
+      }
+    }
+  ]
+}

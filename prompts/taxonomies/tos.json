@@ -1,0 +1,87 @@
+{
+  "document_type": "tos",
+  "description": "Terms of service, terms of use, or privacy policy",
+  "clauses": [
+    {
+      "name": "User Obligations and Acceptable Use",
+      "description": "What users must do or refrain from doing",
+      "risk_factors": {
+        "high": ["Extremely broad prohibited activities", "Account can be terminated for vague violations"],
+        "medium": ["Broad but reasonable restrictions on use"],
+        "low": ["Clear, specific acceptable use policy"]
+      }
+    },
+    {
+      "name": "Data Collection and Use",
+      "description": "What personal data is collected and how it is used",
+      "risk_factors": {
+        "high": ["Collects data beyond what's needed for the service", "Data sold to third parties", "No opt-out for data collection"],
+        "medium": ["Broad data collection with some opt-out options"],
+        "low": ["Minimal data collection with clear purpose and user control"]
+      }
+    },
+    {
+      "name": "Limitation of Liability",
+      "description": "Caps or exclusions on the provider's liability",
+      "risk_factors": {
+        "high": ["Complete exclusion of all liability including gross negligence", "No liability for data loss or breaches"],
+        "medium": ["Standard liability cap at fees paid"],
+        "low": ["Reasonable liability provisions with exceptions for willful misconduct"]
+      }
+    },
+    {
+      "name": "Indemnification",
+      "description": "User's obligation to indemnify the provider",
+      "risk_factors": {
+        "high": ["Broad indemnification for any claim related to user's use", "No cap on indemnification", "User must indemnify for provider's own negligence"],
+        "medium": ["Standard indemnification for user content and violations"],
+        "low": ["Narrow, reasonable indemnification limited to user's breach"]
+      }
+    },
+    {
+      "name": "Termination of Service",
+      "description": "How the provider can terminate or suspend the service/account",
+      "risk_factors": {
+        "high": ["Provider can terminate at any time for any reason without notice", "No refund of prepaid fees on termination", "No data export on termination"],
+        "medium": ["Provider can terminate with notice but limited appeal process"],
+        "low": ["Clear termination process with notice, data export, and proportional refund"]
+      }
+    },
+    {
+      "name": "Changes to Terms",
+      "description": "How the provider can modify the terms of service",
+      "risk_factors": {
+        "high": ["Terms can change at any time with no notice", "Continued use equals acceptance of any change"],
+        "medium": ["Changes with notice but no opt-out except termination"],
+        "low": ["Material changes require active consent or reasonable notice period with opt-out"]
+      }
+    },
+    {
+      "name": "Dispute Resolution",
+      "description": "How disputes between user and provider are handled",
+      "risk_factors": {
+        "high": ["Mandatory binding arbitration with class action waiver", "User pays all dispute costs", "Forum in distant jurisdiction"],
+        "medium": ["Mandatory arbitration but with cost-sharing provisions"],
+        "low": ["User retains right to small claims court, reasonable dispute process"]
+      }
+    },
+    {
+      "name": "Intellectual Property Rights",
+      "description": "Ownership rights over user content and platform IP",
+      "risk_factors": {
+        "high": ["Provider takes ownership of all user content", "Irrevocable worldwide license to user content with no restriction"],
+        "medium": ["Broad license to user content for service operation"],
+        "low": ["User retains ownership, provider gets limited license for service delivery"]
+      }
+    },
+    {
+      "name": "Governing Law",
+      "description": "Which jurisdiction's laws govern the terms",
+      "risk_factors": {
+        "high": ["Governing law in a jurisdiction with weak consumer protections"],
+        "medium": ["Governing law in provider's jurisdiction (user-unfamiliar)"],
+        "low": ["Governing law in user's jurisdiction or internationally recognized neutral forum"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "jurisdiction": "United States - California",
+  "region_code": "US-CA",
+  "document_type": "lease",
+  "last_reviewed": "2026-09-22",
+  "coverage_note": "California has one of the more detailed and frequently-amended sets of statewide residential tenancy laws in the US, layered with local rent-control ordinances in many cities (e.g. San Francisco, Berkeley, Los Angeles, Oakland) that can impose stricter rules than the statewide baseline. This file covers statewide defaults only; local ordinances are not included and can change the answer materially.",
+  "concepts": [
+    {
+      "concept_id": "security_deposit",
+      "summary": "California caps security deposits by statute, and the cap was significantly lowered in 2024.",
+      "details": [
+        "Under California Civil Code Section 1950.5, as amended by Assembly Bill 12 (effective July 1, 2024), the maximum security deposit for most residential landlords is one month's rent, for both furnished and unfurnished units — replacing the prior limits of 2 months (unfurnished) / 3 months (furnished).",
+        "Exception: 'small landlords' — a natural person, or an LLC where all members are natural persons, who own no more than 2 residential rental properties totaling no more than 4 units — may still charge up to 2 months' rent, EXCEPT when the tenant is an active-duty or reserve military service member, in which case the 1-month cap always applies.",
+        "Deposit limits are absolute and cannot be waived by the lease; landlords cannot label extra upfront charges as 'cleaning fees' or 'key deposits' to exceed the cap. Non-refundable fees are generally prohibited outside narrow, separately-regulated screening fees.",
+        "Note: landlords may still require prepayment of rent itself (not framed as a deposit) — e.g. up to 6 months' rent prepaid — for leases with a term of 6 months or longer; this is separate from the deposit cap."
+      ],
+      "confidence": "high — based on Cal. Civ. Code §1950.5 as amended by AB 12 (2023), effective July 1, 2024."
+    },
+    {
+      "concept_id": "deposit_return_timeline",
+      "summary": "Deposits must be returned within a fixed statutory window with an itemized accounting.",
+      "details": [
+        "Landlords must return the security deposit within 21 calendar days after the tenant vacates and returns possession of the unit.",
+        "An itemized statement of any deductions is required unless the total deduction is under $125 (as of 2026 rules)."
+      ],
+      "confidence": "high — Cal. Civ. Code §1950.5."
+    },
+    {
+      "concept_id": "rent_increase_notice",
+      "summary": "Notice period for a rent increase depends on the size of the increase, under a two-tier system.",
+      "details": [
+        "Under Civil Code Section 827: at least 30 days' written written notice is required if the increase, combined with any other increases in the preceding 12 months, is 10% or less.",
+        "At least 90 days' written notice is required if the cumulative increase exceeds 10%.",
+        "If the notice is mailed (rather than delivered another way) within California, an additional 5 calendar days is generally added to these minimums under Code of Civil Procedure §1013.",
+        "Separately, the statewide rent cap under the Tenant Protection Act (AB 1482 / Civil Code §1947.12) generally limits annual increases to 5% plus local CPI, or 10%, whichever is lower, for covered properties (roughly: multifamily buildings 15+ years old, with common exemptions for single-family homes/condos owned by individuals and for newer buildings). Many cities layer additional, stricter local rent-control caps on top of this."
+      ],
+      "confidence": "high — Cal. Civ. Code §827 and §1947.12, but local ordinances can override/tighten this, so always flag 'check local rent control rules for this specific city.'"
+    },
+    {
+      "concept_id": "eviction_just_cause",
+      "summary": "California generally requires a legally recognized reason to evict, plus court process.",
+      "details": [
+        "Under the Tenant Protection Act (AB 1482), tenants who have occupied a unit for 12+ months generally cannot be evicted without 'just cause' (e.g. nonpayment of rent, lease violation, or specified no-fault reasons like owner move-in).",
+        "No-fault evictions (e.g. owner move-in, withdrawal from rental market) generally require the landlord to pay relocation assistance, commonly cited as equivalent to one month's rent.",
+        "Evictions must go through court process (unlawful detainer action); landlords cannot lock out tenants, shut off utilities, or remove belongings to force a move-out themselves — this is illegal self-help eviction regardless of the underlying reason.",
+        "Notice periods before filing for eviction vary by cause (e.g. nonpayment of rent typically triggers a shorter statutory notice period than other causes; some notice/response windows were recently lengthened by AB 2347)."
+      ],
+      "confidence": "medium-high — grounded in AB 1482 and general California eviction process, but exact notice-day counts vary by the specific cause and should be verified for the user's exact situation rather than asserted as a single number."
+    },
+    {
+      "concept_id": "habitability",
+      "summary": "Landlords have an ongoing legal duty to keep the unit livable.",
+      "details": [
+        "California recognizes an 'implied warranty of habitability' — landlords must maintain safe, sanitary, livable conditions (working plumbing, heat, weatherproofing, etc.) regardless of what the lease says.",
+        "As of January 1, 2026, AB 628 expanded state habitability standards to explicitly include essential kitchen appliances."
+      ],
+      "confidence": "medium-high"
+    }
+  ],
+  "always_recommend_verifying": [
+    "Whether the property is in a city with its own rent-control/just-cause ordinance stricter than state law (e.g. San Francisco, Berkeley, Los Angeles, Oakland, Santa Monica) — local rules frequently override the state baseline",
+    "Whether the landlord qualifies for the 'small landlord' exception to the 1-month deposit cap",
+    "Whether the unit is exempt from AB 1482's rent cap and just-cause protections (e.g. certain single-family homes, newer construction)",
+    "The exact statutory notice period for the specific eviction cause at issue, since this varies by cause and has changed recently (e.g. AB 2347)"
+  ]
+}

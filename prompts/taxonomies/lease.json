@@ -1,0 +1,123 @@
+{
+  "document_type": "lease",
+  "description": "Residential or commercial rental/lease agreement",
+  "clauses": [
+    {
+      "name": "Rent Amount and Payment Terms",
+      "description": "Monthly rent, due date, accepted payment methods, grace period",
+      "risk_factors": {
+        "high": ["No clear rent amount specified", "Rent can be changed unilaterally at any time"],
+        "medium": ["No grace period for late payment", "Limited payment methods"],
+        "low": ["Clear fixed rent with reasonable payment terms"]
+      }
+    },
+    {
+      "name": "Security Deposit",
+      "description": "Deposit amount, conditions for deductions, return timeline",
+      "risk_factors": {
+        "high": ["Deposit exceeds typical local norms significantly", "No return timeline specified", "Vague or unlimited deduction reasons"],
+        "medium": ["Return timeline longer than typical norms", "Deduction conditions are broad"],
+        "low": ["Clear deposit amount within typical range with specific return timeline and deduction criteria"]
+      }
+    },
+    {
+      "name": "Lease Term and Renewal",
+      "description": "Duration of lease, renewal terms, auto-renewal provisions",
+      "risk_factors": {
+        "high": ["Auto-renewal with no opt-out mechanism or very short notice window", "No defined term"],
+        "medium": ["Auto-renewal with short opt-out notice period"],
+        "low": ["Clear fixed term with reasonable renewal options"]
+      }
+    },
+    {
+      "name": "Termination and Notice Period",
+      "description": "How either party can end the lease, required notice periods",
+      "risk_factors": {
+        "high": ["Landlord can terminate with no notice or very short notice", "Tenant has no right to early termination", "Asymmetric notice requirements heavily favoring landlord"],
+        "medium": ["Early termination requires excessive penalty", "Notice period is unusually long for tenant"],
+        "low": ["Balanced termination rights with reasonable notice periods"]
+      }
+    },
+    {
+      "name": "Maintenance and Repairs",
+      "description": "Who is responsible for what repairs and maintenance",
+      "risk_factors": {
+        "high": ["Tenant responsible for all repairs including structural", "No obligation for landlord to maintain habitability"],
+        "medium": ["Ambiguous division of maintenance responsibilities"],
+        "low": ["Clear division with landlord responsible for structural/major and tenant for minor"]
+      }
+    },
+    {
+      "name": "Subletting and Assignment",
+      "description": "Whether and how the tenant can sublet or transfer the lease",
+      "risk_factors": {
+        "high": ["Absolute prohibition on subletting with no exception"],
+        "medium": ["Subletting requires landlord consent with no 'not unreasonably withheld' language"],
+        "low": ["Subletting allowed with reasonable consent provisions"]
+      }
+    },
+    {
+      "name": "Utilities and Services",
+      "description": "Who pays for utilities, what services are included",
+      "risk_factors": {
+        "high": ["Ambiguous utility responsibility that could lead to disputes"],
+        "medium": ["Tenant responsible for all utilities with no caps"],
+        "low": ["Clear utility responsibilities defined"]
+      }
+    },
+    {
+      "name": "Late Fees and Penalties",
+      "description": "Fees for late rent payment, bounced checks, other penalties",
+      "risk_factors": {
+        "high": ["Excessive late fees (e.g., >10% of rent)", "Compounding penalties", "No grace period before penalties apply"],
+        "medium": ["Late fees on the higher end of typical range"],
+        "low": ["Reasonable late fees with adequate grace period"]
+      }
+    },
+    {
+      "name": "Landlord Access and Entry",
+      "description": "When and how the landlord can enter the premises",
+      "risk_factors": {
+        "high": ["Landlord can enter at any time without notice", "No restrictions on entry"],
+        "medium": ["Notice period shorter than typical norms", "Broad reasons for entry"],
+        "low": ["Reasonable notice required (24+ hours) with specified valid reasons"]
+      }
+    },
+    {
+      "name": "Insurance Requirements",
+      "description": "Required renter's insurance or other insurance obligations",
+      "risk_factors": {
+        "high": ["Tenant required to carry excessive insurance coverage"],
+        "medium": ["Mandatory renter's insurance with high minimum coverage"],
+        "low": ["Reasonable or no insurance requirements"]
+      }
+    },
+    {
+      "name": "Pet Policy",
+      "description": "Whether pets are allowed, restrictions, additional deposits/fees",
+      "risk_factors": {
+        "high": ["Non-refundable pet deposit that is excessive"],
+        "medium": ["Strict breed/weight restrictions", "Additional monthly pet rent"],
+        "low": ["Reasonable pet policy with clear terms"]
+      }
+    },
+    {
+      "name": "Dispute Resolution",
+      "description": "How disputes are resolved — mediation, arbitration, litigation",
+      "risk_factors": {
+        "high": ["Mandatory binding arbitration with landlord choosing arbitrator", "Tenant waives right to jury trial", "Disputes must be resolved in distant jurisdiction"],
+        "medium": ["Mandatory arbitration but with neutral arbitrator selection"],
+        "low": ["Mediation first, then standard legal process in local jurisdiction"]
+      }
+    },
+    {
+      "name": "Governing Law",
+      "description": "Which jurisdiction's laws govern the agreement",
+      "risk_factors": {
+        "high": ["Governing law is a jurisdiction far from the property location"],
+        "medium": ["No governing law clause specified"],
+        "low": ["Governing law matches the property location"]
+      }
+    }
+  ]
+}

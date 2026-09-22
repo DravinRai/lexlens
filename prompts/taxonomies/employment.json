@@ -1,0 +1,105 @@
+{
+  "document_type": "employment",
+  "description": "Employment offer letter, employment contract, or employment agreement",
+  "clauses": [
+    {
+      "name": "Compensation and Salary",
+      "description": "Base salary, pay frequency, currency, payment method",
+      "risk_factors": {
+        "high": ["No clear compensation amount", "Compensation can be reduced unilaterally"],
+        "medium": ["Pay frequency not specified", "Compensation partly discretionary"],
+        "low": ["Clear fixed compensation with defined pay schedule"]
+      }
+    },
+    {
+      "name": "Benefits and Perks",
+      "description": "Health insurance, retirement, PTO, equity, bonuses",
+      "risk_factors": {
+        "high": ["Benefits described as discretionary with no minimum guarantees"],
+        "medium": ["Benefits 'subject to change' with no notice requirement"],
+        "low": ["Clear benefits package with specific entitlements"]
+      }
+    },
+    {
+      "name": "Employment Term",
+      "description": "Fixed term vs. at-will, start date, probationary period",
+      "risk_factors": {
+        "high": ["At-will with no notice requirement for termination"],
+        "medium": ["Long probationary period with reduced rights", "At-will but with reasonable notice"],
+        "low": ["Fixed term with clear conditions for renewal or non-renewal"]
+      }
+    },
+    {
+      "name": "Termination and Notice Period",
+      "description": "How employment can be ended, required notice, severance",
+      "risk_factors": {
+        "high": ["Employer can terminate without cause and without notice or severance", "Asymmetric notice requirements"],
+        "medium": ["No severance provisions", "Short notice period"],
+        "low": ["Balanced termination rights with reasonable notice and severance"]
+      }
+    },
+    {
+      "name": "Non-Compete Clause",
+      "description": "Restrictions on working for competitors after employment",
+      "risk_factors": {
+        "high": ["Broad geographic scope and long duration (>2 years)", "Covers entire industry", "No compensation during restriction period"],
+        "medium": ["Moderate scope (1-2 years, limited geography)"],
+        "low": ["Narrow and reasonable scope, or no non-compete"]
+      }
+    },
+    {
+      "name": "Non-Solicitation Clause",
+      "description": "Restrictions on soliciting company clients or employees",
+      "risk_factors": {
+        "high": ["Broadly defined to cover any business contact", "Duration exceeds 2 years"],
+        "medium": ["Covers direct clients/team for 1-2 years"],
+        "low": ["Narrowly scoped to direct clients for reasonable period"]
+      }
+    },
+    {
+      "name": "Intellectual Property Assignment",
+      "description": "Ownership of work created during employment",
+      "risk_factors": {
+        "high": ["Assigns ALL inventions including personal/prior work", "No carve-out for pre-existing IP", "Extends beyond employment period"],
+        "medium": ["Broad assignment but limited to work-related creations"],
+        "low": ["Clear assignment of work product only, with pre-existing IP carve-out"]
+      }
+    },
+    {
+      "name": "Confidentiality",
+      "description": "Obligations around company confidential information",
+      "risk_factors": {
+        "high": ["Definition of confidential info is extremely broad", "Obligations survive indefinitely", "No exclusions for public information"],
+        "medium": ["Broad definition but with standard exclusions"],
+        "low": ["Reasonable scope with clear exclusions and limited duration"]
+      }
+    },
+    {
+      "name": "Probation Period",
+      "description": "Initial probation period terms and conditions",
+      "risk_factors": {
+        "high": ["Extended probation (>6 months) with significantly reduced benefits or rights"],
+        "medium": ["Standard probation with reduced notice period"],
+        "low": ["Reasonable probation period (1-3 months) with clear expectations"]
+      }
+    },
+    {
+      "name": "Dispute Resolution",
+      "description": "How workplace disputes are resolved",
+      "risk_factors": {
+        "high": ["Mandatory arbitration waiving right to class action", "Employee pays arbitration costs", "Arbitration in distant jurisdiction"],
+        "medium": ["Mandatory arbitration but with employer paying costs"],
+        "low": ["Mediation first, with retained right to pursue legal remedies"]
+      }
+    },
+    {
+      "name": "Governing Law",
+      "description": "Which jurisdiction's laws apply",
+      "risk_factors": {
+        "high": ["Governing law differs from employee's work location"],
+        "medium": ["No governing law clause"],
+        "low": ["Governing law matches work location"]
+      }
+    }
+  ]
+}
