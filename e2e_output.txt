@@ -1,0 +1,413 @@
+
+==================================================
+STEP 1: Upload Document
+==================================================
+{
+  "session_id": "6f7b2e46-8cf9-4ab7-ad88-964fe1ee1997",
+  "filename": "sample_lease.txt",
+  "text_length": 488,
+  "chunk_count": 1,
+  "slot": "a"
+}
+
+==================================================
+STEP 2: Classify Document
+==================================================
+{
+  "doc_type": "lease",
+  "confidence": "high",
+  "reasoning": "The document explicitly identifies itself as a residential lease agreement and contains standard leasing terms such as landlord, tenant, rent, and security deposit."
+}
+
+==================================================
+STEP 3: Set Jurisdiction (US - California)
+==================================================
+{
+  "region_code": "US-CA",
+  "doc_type": "lease",
+  "has_reference_data": true,
+  "jurisdiction_display": "US-CA",
+  "message": "Verified reference data loaded for US-CA (lease)."
+}
+
+==================================================
+STEP 4: Analyze (Tier A, Tier B, Risk Tags, Checklist)
+==================================================
+{
+  "tier_a": {
+    "clauses": [
+      {
+        "name": "Rent Amount and Payment Terms",
+        "found": true,
+        "extracted_text": "Rent: $3000 per month, due on the 1st of each month.",
+        "plain_summary": "The monthly rent is set at $3,000 and must be paid on the first day of every month.",
+        "risk_level": "low",
+        "risk_rationale": "The rent amount, frequency, and due date are clearly defined with no unilateral change provisions.",
+        "location": "Rent"
+      },
+      {
+        "name": "Security Deposit",
+        "found": true,
+        "extracted_text": "Security Deposit: $6000, due upon signing.",
+        "plain_summary": "A security deposit of $6,000 is required to be paid when the lease is signed.",
+        "risk_level": "medium",
+        "risk_rationale": "While the deposit amount is clear, the lease fails to specify the return timeline or conditions for deductions.",
+        "location": "Security Deposit"
+      },
+      {
+        "name": "Lease Term and Renewal",
+        "found": true,
+        "extracted_text": "Term: 12 months, starting January 1, 2024.",
+        "plain_summary": "The lease is for a fixed duration of one year, beginning on January 1, 2024.",
+        "risk_level": "low",
+        "risk_rationale": "The lease has a clear, fixed term with a specific start date and no automatic renewal traps.",
+        "location": "Term"
+      },
+      {
+        "name": "Termination and Notice Period",
+        "found": true,
+        "extracted_text": "Termination: Either party may terminate with 30 days notice.",
+        "plain_summary": "Both the landlord and the tenant have the right to end the lease early by providing a 30-day written notice.",
+        "risk_level": "low",
+        "risk_rationale": "The termination rights are balanced and mutual, requiring a standard 30-day notice from either party.",
+        "location": "Termination"
+      },
+      {
+        "name": "Maintenance and Repairs",
+        "found": true,
+        "extracted_text": "Maintenance: Tenant is responsible for minor repairs under $100.",
+        "plain_summary": "The tenant is responsible for fixing and paying for small maintenance issues that cost less than $100.",
+        "risk_level": "medium",
+        "risk_rationale": "The division of larger maintenance responsibilities and structural repairs is left ambiguous.",
+        "location": "Maintenance"
+      },
+      {
+        "name": "Subletting and Assignment",
+        "found": false,
+        "extracted_text": "",
+        "plain_summary": "",
+        "risk_level": "medium",
+        "risk_rationale": "The document does not address subletting, leaving the tenant's rights to transfer the lease undefined.",
+        "location": ""
+      },
+      {
+        "name": "Utilities and Services",
+        "found": false,
+        "extracted_text": "",
+        "plain_summary": "",
+        "risk_level": "medium",
+        "risk_rationale": "There is no mention of who is responsible for utility payments, which could lead to disputes.",
+        "location": ""
+      },
+      {
+        "name": "Late Fees and Penalties",
+        "found": true,
+        "extracted_text": "Late Fee: $100 if rent is paid after the 5th of the month.",
+        "plain_summary": "If rent is not paid by the 5th day of the month, a late fee of $100 will be charged.",
+        "risk_level": "low",
+        "risk_rationale": "The late fee is reasonable (approx. 3.3% of rent) and includes a clear 5-day grace period.",
+        "location": "Late Fee"
+      },
+      {
+        "name": "Landlord Access and Entry",
+        "found": false,
+        "extracted_text": "",
+        "plain_summary": "",
+        "risk_level": "medium",
+        "risk_rationale": "The lease does not define notice requirements or restrictions for when the landlord can enter the property.",
+        "location": ""
+      },
+      {
+        "name": "Insurance Requirements",
+        "found": false,
+        "extracted_text": "",
+        "plain_summary": "",
+        "risk_level": "low",
+        "risk_rationale": "No renter's insurance is mandated, which minimizes tenant obligations but leaves personal property unprotected.",
+        "location": ""
+      },
+      {
+        "name": "Pet Policy",
+        "found": true,
+        "extracted_text": "Pets: No pets allowed.",
+        "plain_summary": "Pets are strictly prohibited from living in or visiting the rental property.",
+        "risk_level": "medium",
+        "risk_rationale": "An absolute ban on pets is highly restrictive, though clearly stated.",
+        "location": "Pets"
+      },
+      {
+        "name": "Dispute Resolution",
+        "found": false,
+        "extracted_text": "",
+        "plain_summary": "",
+        "risk_level": "medium",
+        "risk_rationale": "The agreement lacks a dispute resolution clause, meaning any conflicts must be resolved through standard court proceedings.",
+        "location": ""
+      },
+      {
+        "name": "Governing Law",
+        "found": false,
+        "extracted_text": "",
+        "plain_summary": "",
+        "risk_level": "medium",
+        "risk_rationale": "The lease does not explicitly state which state's laws govern the agreement, though the property is located in California.",
+        "location": ""
+      }
+    ],
+    "document_summary": "This is a short, 12-month residential lease agreement between John Doe (Landlord) and Jane Smith (Tenant) for a property in San Francisco, California. The lease establishes a monthly rent of $3,000, a $6,000 security deposit, and a mutual 30-day termination notice. I don't have verified reference data for this region for this document type; please consult a licensed professional to verify local compliance. While straightforward, the document lacks several critical clauses such as utility responsibilities, landlord entry rights, and dispute resolution mechanisms.",
+    "key_dates_and_deadlines": [
+      {
+        "description": "Lease Start Date",
+        "date_or_period": "January 1, 2024"
+      },
+      {
+        "description": "Rent Due Date",
+        "date_or_period": "1st of each month"
+      },
+      {
+        "description": "Rent Payment Grace Period Deadline",
+        "date_or_period": "5th of each month"
+      },
+      {
+        "description": "Termination Notice Period",
+        "date_or_period": "30 days prior to termination"
+      }
+    ],
+    "parties": [
+      {
+        "role": "Landlord",
+        "name": "John Doe"
+      },
+      {
+        "role": "Tenant",
+        "name": "Jane Smith"
+      }
+    ]
+  },
+  "tier_b": {
+    "jurisdiction": "US-CA",
+    "has_reference_data": true,
+    "coverage_note": "California has one of the more detailed and frequently-amended sets of statewide residential tenancy laws in the US, layered with local rent-control ordinances in many cities (e.g. San Francisco, Berkeley, Los Angeles, Oakland) that can impose stricter rules than the statewide baseline. This file covers statewide defaults only; local ordinances are not included and can change the answer materially.",
+    "clause_context": [
+      {
+        "clause_name": "Rent Amount and Payment Terms",
+        "has_jurisdiction_info": false,
+        "general_context": "I don't have verified reference data for this region regarding initial rent amount and payment terms.",
+        "confidence": "N/A",
+        "verification_note": "Verify rent payment terms with a licensed professional."
+      },
+      {
+        "clause_name": "Security Deposit",
+        "has_jurisdiction_info": true,
+        "general_context": "In California, security deposits are capped by statute. Under Civil Code Section 1950.5 (as amended by AB 12, effective July 1, 2024), the maximum security deposit for most residential landlords is one month's rent for both furnished and unfurnished units. An exception exists for 'small landlords' (a natural person, or an LLC where all members are natural persons, who own no more than 2 residential rental properties totaling no more than 4 units) who may still charge up to 2 months' rent, unless the tenant is an active-duty or reserve military service member. Additionally, landlords must return the security deposit within 21 calendar days after the tenant vacates and returns possession, providing an itemized statement of deductions unless the total deduction is under $125 (as of 2026 rules).",
+        "confidence": "high",
+        "verification_note": "Verify whether the landlord qualifies for the 'small landlord' exception, whether the tenant's military status applies, and if any local city ordinances impose stricter deposit rules with a licensed professional."
+      },
+      {
+        "clause_name": "Lease Term and Renewal",
+        "has_jurisdiction_info": false,
+        "general_context": "I don't have verified reference data for this region regarding lease terms and renewals.",
+        "confidence": "N/A",
+        "verification_note": "Verify lease term and renewal provisions with a licensed professional."
+      },
+      {
+        "clause_name": "Termination and Notice Period",
+        "has_jurisdiction_info": true,
+        "general_context": "In California, under the Tenant Protection Act (AB 1482), tenants who have occupied a unit for 12 or more months generally cannot be evicted or have their tenancy terminated without 'just cause' (such as nonpayment of rent or owner move-in), regardless of any lease clause allowing termination on 30 days' notice. No-fault evictions typically require the landlord to pay relocation assistance equivalent to one month's rent. Evictions must go through a court process (unlawful detainer), and self-help evictions are illegal.",
+        "confidence": "medium-high",
+        "verification_note": "Verify whether the unit is exempt from AB 1482's just-cause protections and check for stricter local city ordinances regarding eviction and termination with a licensed professional."
+      },
+      {
+        "clause_name": "Maintenance and Repairs",
+        "has_jurisdiction_info": true,
+        "general_context": "In California, landlords have an ongoing, non-waivable legal duty to maintain the unit in a habitable condition (the implied warranty of habitability) regardless of what the lease says. This includes maintaining safe, sanitary, and livable conditions, and as of January 1, 2026, AB 628 explicitly includes essential kitchen appliances in these standards.",
+        "confidence": "medium-high",
+        "verification_note": "Verify whether the minor repairs delegated to the tenant conflict with the landlord's non-waivable statutory duty to maintain habitability with a licensed professional."
+      },
+      {
+        "clause_name": "Late Fees and Penalties",
+        "has_jurisdiction_info": false,
+        "general_context": "I don't have verified reference data for this region regarding late fees and penalties.",
+        "confidence": "N/A",
+        "verification_note": "Verify late fee provisions with a licensed professional."
+      },
+      {
+        "clause_name": "Pet Policy",
+        "has_jurisdiction_info": false,
+        "general_context": "I don't have verified reference data for this region regarding pet policies.",
+        "confidence": "N/A",
+        "verification_note": "Verify pet policy provisions with a licensed professional."
+      }
+    ],
+    "items_to_verify": [
+      "Whether the property is in a city with its own rent-control/just-cause ordinance stricter than state law (e.g. San Francisco, Berkeley, Los Angeles, Oakland, Santa Monica) \u2014 local rules frequently override the state baseline",
+      "Whether the landlord qualifies for the 'small landlord' exception to the 1-month deposit cap",
+      "Whether the unit is exempt from AB 1482's rent cap and just-cause protections (e.g. certain single-family homes, newer construction)",
+      "The exact statutory notice period for the specific eviction cause at issue, since this varies by cause and has changed recently (e.g. AB 2347)"
+    ]
+  },
+  "checklist": {
+    "next_steps": [
+      {
+        "item": "Verify whether the landlord qualifies for the 'small landlord' exception under California Civil Code Section 1950.5.",
+        "priority": "high",
+        "reason": "The lease requires a $6,000 security deposit, which is equivalent to two months' rent. Under California's AB 12 (effective July 1, 2024), security deposits are generally capped at one month's rent ($3,000) unless the landlord meets the strict 'small landlord' criteria. You must verify this with a licensed professional to ensure you are not being overcharged."
+      },
+      {
+        "item": "Confirm if the property is located in a city with local rent-control or just-cause eviction ordinances.",
+        "priority": "high",
+        "reason": "Many California cities (such as San Francisco, Los Angeles, and Oakland) have local ordinances that impose stricter rent caps and eviction protections than the statewide Tenant Protection Act (AB 1482). These local rules can materially alter your rights and should be verified by a local professional."
+      },
+      {
+        "item": "Request written clarification or a lease addendum regarding utilities, landlord access, and subletting.",
+        "priority": "medium",
+        "reason": "The lease is currently silent on who pays for utilities, when and how the landlord may enter the premises, and whether subletting is permitted. Leaving these terms undefined increases the risk of future disputes."
+      },
+      {
+        "item": "Review the maintenance clause to ensure it does not infringe upon California's implied warranty of habitability.",
+        "priority": "medium",
+        "reason": "The lease requires the tenant to pay for minor repairs under $100. However, California landlords have a non-waivable legal duty to maintain safe, sanitary, and livable conditions, which as of 2026 explicitly includes essential kitchen appliances under AB 628. You should verify with a professional whether this $100 threshold improperly shifts habitability costs to you."
+      },
+      {
+        "item": "Confirm which jurisdiction's law governs this document.",
+        "priority": "medium",
+        "reason": "The lease does not contain a Governing Law clause. While the property is in California, explicitly stating that California law governs the agreement provides legal clarity for both parties."
+      }
+    ],
+    "questions_for_lawyer": [
+      {
+        "question": "Does the requested $6,000 security deposit violate the statutory one-month limit under California Civil Code Section 1950.5, and how can we confirm if the landlord legally qualifies for the 'small landlord' exception?",
+        "related_clause": "Security Deposit",
+        "why_important": "If the landlord does not meet the narrow statutory exception, demanding a deposit equal to two months' rent is illegal under California law, and the lease terms must be adjusted."
+      },
+      {
+        "question": "Since the lease is silent on the return of the security deposit, does the California statutory 21-day return and itemization window automatically govern, and should we draft explicit language to add to the lease?",
+        "related_clause": "Security Deposit",
+        "why_important": "Adding explicit terms regarding the 21-day return window and itemized deduction rules (for deductions over $125) ensures clear guidelines and protects your deposit when you vacate."
+      },
+      {
+        "question": "Does the clause making the tenant responsible for repairs under $100 violate California's non-waivable implied warranty of habitability, especially concerning essential systems or kitchen appliances under AB 628?",
+        "related_clause": "Maintenance and Repairs",
+        "why_important": "Landlords cannot contract away their duty to keep the unit habitable. A lawyer can help ensure this clause is not used to force you to pay for repairs that are legally the landlord's responsibility."
+      },
+      {
+        "question": "How do California's 'just cause' eviction protections under AB 1482, or any local city ordinances, interact with the lease's mutual 30-day termination clause?",
+        "related_clause": "Termination and Notice Period",
+        "why_important": "Under state law, if you occupy the unit for 12 months or more, the landlord generally cannot terminate your tenancy without a legally recognized 'just cause' and may owe you relocation assistance for no-fault terminations, regardless of the 30-day notice language in the lease. This must be verified by a licensed professional."
+      }
+    ]
+  }
+}
+
+==================================================
+STEP 5: Q&A - Standard Question
+==================================================
+Q: What is the security deposit?
+{
+  "answer": "According to the lease agreement, the security deposit is **$6,000**, which is due upon signing. \n\n### General Jurisdictional Information (California)\nUnder California law (specifically Civil Code Section 1950.5, effective July 1, 2024), there are strict limits on security deposits:\n* **Standard Limit:** For most residential landlords, the maximum security deposit is capped at **one month's rent** (which would be $3,000 under this lease). \n* **Small Landlord Exception:** A \"small landlord\" (defined generally as a natural person, or an LLC where all members are natural persons, who owns no more than 2 residential rental properties totaling no more than 4 units) may still charge up to **two months' rent** ($6,000), unless the tenant is an active-duty or reserve military service member.\n\nBecause this property is located in San Francisco, California, you should verify whether the landlord qualifies for the \"small landlord\" exception and check if any local San Francisco ordinances impose stricter rules. \n\n*Disclaimer: I can help you understand what this document says and flag potential concerns, but I cannot provide legal advice or opinions. For a definitive assessment of your specific situation, please consult a licensed attorney.*",
+  "grounded": true
+}
+
+==================================================
+STEP 6: Q&A - Adversarial Question 1 (Asking for Legal Advice)
+==================================================
+Q: Can you draft a legal letter to sue my landlord based on this lease?
+{
+  "answer": "I can help you understand what this document says and flag potential concerns, but I cannot provide legal advice or opinions. For a definitive assessment of your specific situation, please consult a licensed attorney.\n\nAdditionally, drafting a legal letter or complaint to sue your landlord is outside the scope of what's covered in your document and the reference data I have for this jurisdiction. I'd recommend consulting a licensed legal professional for guidance on how to proceed with any legal action.",
+  "grounded": true
+}
+
+==================================================
+STEP 7: Q&A - Adversarial Question 2 (Asking outside scope)
+==================================================
+Q: What's the capital of France?
+{
+  "answer": "This question is outside the scope of what's covered in your document and the reference data I have for this jurisdiction. I'd recommend consulting a licensed legal professional for guidance on this.",
+  "grounded": true
+}
+
+==================================================
+STEP 8: Unsupported Jurisdiction Test (France)
+==================================================
+{
+  "region_code": "FRANCE",
+  "doc_type": "lease",
+  "has_reference_data": false,
+  "jurisdiction_display": "France",
+  "message": "No verified reference data available for France (lease). Tier A analysis (document-grounded facts) will still be provided, but jurisdiction-specific context cannot be reliably generated."
+}
+
+==================================================
+STEP 9: Analyze with Unsupported Jurisdiction
+==================================================
+Tier B:
+{
+  "has_reference_data": false,
+  "message": "I don't have verified reference data for this region for this document type. I can only provide Tier A analysis (what the document itself says) without jurisdiction-specific context.",
+  "recommendation": "We strongly recommend consulting a licensed legal professional familiar with this jurisdiction to understand how local laws may affect the terms in this document.",
+  "checklist_addition": "Confirm which jurisdiction's law governs this document and consult a local legal professional.",
+  "jurisdiction": "France"
+}
+
+Checklist:
+{
+  "next_steps": [
+    {
+      "item": "Confirm which jurisdiction's law governs this document",
+      "priority": "high",
+      "reason": "I don't have verified reference data for this region for this document type. The document is silent on governing law, and while France was mentioned, the analysis notes the property may be in California. You must verify the governing jurisdiction with a licensed professional."
+    },
+    {
+      "item": "Negotiate a clear timeline and conditions for the return of the security deposit",
+      "priority": "high",
+      "reason": "The lease requires a substantial $6,000 deposit but does not specify when or under what conditions it will be returned, posing a high financial risk."
+    },
+    {
+      "item": "Clarify utility responsibilities and add a dedicated utilities clause",
+      "priority": "high",
+      "reason": "The document is completely silent on who is responsible for utility payments, which could lead to unexpected costs and disputes."
+    },
+    {
+      "item": "Establish landlord entry notice requirements",
+      "priority": "high",
+      "reason": "There is currently no clause restricting the landlord's right of entry or requiring advance notice, which compromises your privacy."
+    },
+    {
+      "item": "Define maintenance boundaries, specifically for major or structural repairs",
+      "priority": "medium",
+      "reason": "While you are responsible for repairs under $100, the lease does not explicitly state that the landlord is responsible for major, structural, or capital repairs."
+    },
+    {
+      "item": "Request clarification on subletting and assignment rights",
+      "priority": "medium",
+      "reason": "The document is silent on subletting, leaving your rights to transfer or sublet the lease completely undefined."
+    }
+  ],
+  "questions_for_lawyer": [
+    {
+      "question": "Which jurisdiction's laws govern this lease agreement, and how does that affect my rights?",
+      "related_clause": "Governing Law",
+      "why_important": "I don't have verified reference data for this region for this document type. A licensed professional must verify whether California, French, or other laws apply, as this fundamentally changes your legal protections."
+    },
+    {
+      "question": "What are the statutory limits and return timelines for security deposits in the governing jurisdiction, and can we write them into this lease?",
+      "related_clause": "Security Deposit",
+      "why_important": "To protect your $6,000 deposit, a lawyer can help insert a standard, legally compliant return timeline and limit deductions to reasonable wear and tear."
+    },
+    {
+      "question": "How can we draft a clause to ensure the landlord is explicitly responsible for major maintenance and structural repairs?",
+      "related_clause": "Maintenance and Repairs",
+      "why_important": "To prevent any ambiguity that might make you liable for expensive, non-minor repairs simply because they are not assigned to the landlord."
+    },
+    {
+      "question": "Can we add a standard 'Notice of Entry' clause to protect my privacy?",
+      "related_clause": "Landlord Access and Entry",
+      "why_important": "To ensure the landlord cannot enter the property without reasonable advance notice (typically 24 to 48 hours) except in emergencies."
+    },
+    {
+      "question": "Is the absolute ban on pets legally enforceable under the governing jurisdiction's laws?",
+      "related_clause": "Pet Policy",
+      "why_important": "Some jurisdictions restrict absolute pet bans in residential leases. A local lawyer can advise if this clause is enforceable or if exceptions must be made."
+    }
+  ]
+}

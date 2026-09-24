@@ -1,0 +1,11 @@
+This is a residential lease agreement.
+Landlord: John Doe
+Tenant: Jane Smith
+Property: 123 Main St, Apartment 4B, San Francisco, California.
+Term: 12 months, starting January 1, 2024.
+Rent: $3000 per month, due on the 1st of each month.
+Security Deposit: $6000, due upon signing.
+Late Fee: $100 if rent is paid after the 5th of the month.
+Maintenance: Tenant is responsible for minor repairs under $100.
+Pets: No pets allowed.
+Termination: Either party may terminate with 30 days notice.

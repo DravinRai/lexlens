@@ -42,7 +42,7 @@ def _get_client() -> genai.Client:
 
 def _get_model() -> str:
     """Get the configured model name."""
-    return os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    return os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
 
 
 def _extract_json(text: str) -> dict | list:
@@ -76,6 +76,23 @@ def _extract_json(text: str) -> dict | list:
     raise ValueError(f"Could not extract valid JSON from LLM response: {text[:200]}...")
 
 
+async def _generate_with_retry(client, model, contents, config):
+    import asyncio
+    for attempt in range(5):
+        try:
+            return client.models.generate_content(
+                model=model,
+                contents=contents,
+                config=config,
+            )
+        except Exception as e:
+            if attempt < 4:
+                print(f"LLM API error (attempt {attempt + 1}): {e}")
+                await asyncio.sleep(20)
+            else:
+                raise
+
+
 async def classify_document(document_text: str) -> dict[str, Any]:
     """
     Classify document type using Gemini.
@@ -89,7 +106,8 @@ async def classify_document(document_text: str) -> dict[str, Any]:
 
     prompt = CLASSIFY_PROMPT.format(document_text=truncated)
 
-    response = client.models.generate_content(
+    response = await _generate_with_retry(
+        client=client,
         model=_get_model(),
         contents=prompt,
         config=types.GenerateContentConfig(
@@ -117,7 +135,8 @@ async def extract_and_risk_tag(
         document_text=document_text,
     )
 
-    response = client.models.generate_content(
+    response = await _generate_with_retry(
+        client=client,
         model=_get_model(),
         contents=prompt,
         config=types.GenerateContentConfig(
@@ -155,7 +174,8 @@ async def generate_tier_b(
         jurisdiction_name=jurisdiction_name,
     )
 
-    response = client.models.generate_content(
+    response = await _generate_with_retry(
+        client=client,
         model=_get_model(),
         contents=prompt,
         config=types.GenerateContentConfig(
@@ -198,7 +218,8 @@ async def generate_checklist(
         clauses_json=clauses_json,
     )
 
-    response = client.models.generate_content(
+    response = await _generate_with_retry(
+        client=client,
         model=_get_model(),
         contents=prompt,
         config=types.GenerateContentConfig(
@@ -229,7 +250,8 @@ async def compare_documents(
         taxonomy_text=taxonomy_text,
     )
 
-    response = client.models.generate_content(
+    response = await _generate_with_retry(
+        client=client,
         model=_get_model(),
         contents=prompt,
         config=types.GenerateContentConfig(
@@ -277,7 +299,8 @@ async def grounded_qa(
         chat_history=history_str,
     )
 
-    response = client.models.generate_content(
+    response = await _generate_with_retry(
+        client=client,
         model=_get_model(),
         contents=question,
         config=types.GenerateContentConfig(

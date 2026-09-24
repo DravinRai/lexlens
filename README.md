@@ -164,6 +164,14 @@ pytest tests/ -v
 
 ---
 
+## Assumptions
+
+- Users are seeking informational context and not formal legal representation.
+- Uploaded documents are standard, text-based files (PDF, DOCX) typically under 50 pages.
+- English is the primary language for uploaded documents and system interaction.
+
+---
+
 ## Design Decisions
 
 ### Why no vector database?

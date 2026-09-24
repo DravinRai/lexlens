@@ -30,11 +30,11 @@ CLASSIFY_PROMPT = """Classify this legal document into exactly ONE of these cate
 - other (anything that doesn't clearly fit the above)
 
 Respond with ONLY a JSON object in this exact format:
-{
+{{
   "doc_type": "<category>",
   "confidence": "<high|medium|low>",
   "reasoning": "<one sentence explaining why>"
-}
+}}
 
 DOCUMENT TEXT:
 ---

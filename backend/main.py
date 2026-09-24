@@ -256,8 +256,11 @@ async def analyze_document(request: AnalyzeRequest):
     # Load taxonomy for this document type
     taxonomy = load_taxonomy(doc_type)
 
+    import asyncio
     # Tier A: Extract clauses and risk-tag them
     tier_a = await llm.extract_and_risk_tag(session["text"], taxonomy)
+    
+    await asyncio.sleep(15)
 
     # Tier B: Jurisdictional context (real branch: ref data or honest fallback)
     tier_b = await llm.generate_tier_b(
@@ -265,6 +268,8 @@ async def analyze_document(request: AnalyzeRequest):
         jurisdiction_name=jurisdiction,
         clauses_json=json.dumps(tier_a.get("clauses", []), indent=2),
     )
+    
+    await asyncio.sleep(15)
 
     # Checklist: tailored by doc type + jurisdiction availability
     checklist = await llm.generate_checklist(
