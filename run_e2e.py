@@ -64,8 +64,8 @@ def run_e2e():
     print(json.dumps(response.json(), indent=2))
     
     # 6. Q&A 2: Adversarial Question 1
-    print_step("STEP 6: Q&A - Adversarial Question 1 (Asking for Legal Advice)")
-    question2 = "Can you draft a legal letter to sue my landlord based on this lease?"
+    print_step("STEP 6: Q&A - Adversarial Question 1")
+    question2 = "Is my landlord allowed to evict me for no reason?"
     print(f"Q: {question2}")
     response = post_with_retry(f"{BASE_URL}/chat", json={
         "session_id": session_id,
@@ -74,8 +74,8 @@ def run_e2e():
     print(json.dumps(response.json(), indent=2))
     
     # 7. Q&A 3: Adversarial Question 2
-    print_step("STEP 7: Q&A - Adversarial Question 2 (Asking outside scope)")
-    question3 = "What's the capital of France?"
+    print_step("STEP 7: Q&A - Adversarial Question 2")
+    question3 = "Can I sue my landlord for this?"
     print(f"Q: {question3}")
     response = post_with_retry(f"{BASE_URL}/chat", json={
         "session_id": session_id,
