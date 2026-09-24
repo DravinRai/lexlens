@@ -65,8 +65,12 @@ app.add_middleware(
 )
 
 # In-memory session store — no disk persistence (privacy by design)
-session_ttl = int(os.getenv("SESSION_TTL", "1800"))
-max_upload_size = int(os.getenv("MAX_UPLOAD_SIZE", str(2 * 1024 * 1024)))
+session_ttl_str = os.getenv("SESSION_TTL")
+session_ttl = int(session_ttl_str) if session_ttl_str else 1800
+
+max_upload_str = os.getenv("MAX_UPLOAD_SIZE")
+max_upload_size = int(max_upload_str) if max_upload_str else 2 * 1024 * 1024
+
 sessions = SessionStore(ttl_seconds=session_ttl)
 
 
