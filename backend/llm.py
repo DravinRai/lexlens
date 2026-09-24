@@ -16,20 +16,36 @@ from typing import Any
 from google import genai
 from google.genai import types
 
-from .prompts import (
-    GLOBAL_SYSTEM_INSTRUCTION,
-    CLASSIFY_PROMPT,
-    EXTRACT_AND_RISK_PROMPT,
-    TIER_B_PROMPT,
-    TIER_B_NO_DATA_RESPONSE,
-    CHECKLIST_PROMPT,
-    COMPARE_PROMPT,
-    QA_SYSTEM_PROMPT,
-    QA_JURISDICTION_SECTION,
-    QA_NO_JURISDICTION_SECTION,
-)
-from .jurisdiction import format_reference_for_prompt
-from .taxonomy import format_taxonomy_for_prompt
+try:
+    from .prompts import (
+        GLOBAL_SYSTEM_INSTRUCTION,
+        CLASSIFY_PROMPT,
+        EXTRACT_AND_RISK_PROMPT,
+        TIER_B_PROMPT,
+        TIER_B_NO_DATA_RESPONSE,
+        CHECKLIST_PROMPT,
+        COMPARE_PROMPT,
+        QA_SYSTEM_PROMPT,
+        QA_JURISDICTION_SECTION,
+        QA_NO_JURISDICTION_SECTION,
+    )
+    from .jurisdiction import format_reference_for_prompt
+    from .taxonomy import format_taxonomy_for_prompt
+except ImportError:
+    from prompts import (
+        GLOBAL_SYSTEM_INSTRUCTION,
+        CLASSIFY_PROMPT,
+        EXTRACT_AND_RISK_PROMPT,
+        TIER_B_PROMPT,
+        TIER_B_NO_DATA_RESPONSE,
+        CHECKLIST_PROMPT,
+        COMPARE_PROMPT,
+        QA_SYSTEM_PROMPT,
+        QA_JURISDICTION_SECTION,
+        QA_NO_JURISDICTION_SECTION,
+    )
+    from jurisdiction import format_reference_for_prompt
+    from taxonomy import format_taxonomy_for_prompt
 
 
 def _get_client() -> genai.Client:

@@ -17,15 +17,26 @@ from fastapi import FastAPI, UploadFile, File, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from .session_store import SessionStore
-from .document_processor import extract_text, chunk_text, validate_file
-from .jurisdiction import (
-    load_reference,
-    normalize_region_code,
-    get_supported_jurisdictions,
-)
-from .taxonomy import load_taxonomy
-from . import llm
+try:
+    from .session_store import SessionStore
+    from .document_processor import extract_text, chunk_text, validate_file
+    from .jurisdiction import (
+        load_reference,
+        normalize_region_code,
+        get_supported_jurisdictions,
+    )
+    from .taxonomy import load_taxonomy
+    from . import llm
+except ImportError:
+    from session_store import SessionStore
+    from document_processor import extract_text, chunk_text, validate_file
+    from jurisdiction import (
+        load_reference,
+        normalize_region_code,
+        get_supported_jurisdictions,
+    )
+    from taxonomy import load_taxonomy
+    import llm
 
 load_dotenv()
 
