@@ -35,9 +35,19 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Build CORS allowed origins list
+_cors_origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+# Allow the deployed frontend origin (set via FRONTEND_URL env var on Vercel)
+_frontend_url = os.getenv("FRONTEND_URL")
+if _frontend_url:
+    _cors_origins.append(_frontend_url.rstrip("/"))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -256,11 +266,8 @@ async def analyze_document(request: AnalyzeRequest):
     # Load taxonomy for this document type
     taxonomy = load_taxonomy(doc_type)
 
-    import asyncio
     # Tier A: Extract clauses and risk-tag them
     tier_a = await llm.extract_and_risk_tag(session["text"], taxonomy)
-    
-    await asyncio.sleep(15)
 
     # Tier B: Jurisdictional context (real branch: ref data or honest fallback)
     tier_b = await llm.generate_tier_b(
@@ -268,8 +275,6 @@ async def analyze_document(request: AnalyzeRequest):
         jurisdiction_name=jurisdiction,
         clauses_json=json.dumps(tier_a.get("clauses", []), indent=2),
     )
-    
-    await asyncio.sleep(15)
 
     # Checklist: tailored by doc type + jurisdiction availability
     checklist = await llm.generate_checklist(

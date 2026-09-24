@@ -78,7 +78,7 @@ def _extract_json(text: str) -> dict | list:
 
 async def _generate_with_retry(client, model, contents, config):
     import asyncio
-    for attempt in range(5):
+    for attempt in range(3):
         try:
             return client.models.generate_content(
                 model=model,
@@ -86,9 +86,9 @@ async def _generate_with_retry(client, model, contents, config):
                 config=config,
             )
         except Exception as e:
-            if attempt < 4:
+            if attempt < 2:
                 print(f"LLM API error (attempt {attempt + 1}): {e}")
-                await asyncio.sleep(20)
+                await asyncio.sleep(2)
             else:
                 raise
 
