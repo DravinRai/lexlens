@@ -57,6 +57,7 @@ app = FastAPI(
 _cors_origins = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://frontend-lime-nine-pciu8cwzbf.vercel.app",
 ]
 # Allow the deployed frontend origin (set via FRONTEND_URL env var on Vercel)
 _frontend_url = os.getenv("FRONTEND_URL")
