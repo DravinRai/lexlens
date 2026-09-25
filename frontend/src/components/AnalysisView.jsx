@@ -8,7 +8,7 @@ export default function AnalysisView({ analysis, jurisdiction, docType, hasRefer
   const { tier_a, tier_b, checklist } = analysis;
 
   return (
-    <div className="animate-in">
+    <div className="animate-in" aria-live="polite">
       {/* ─── Tier A: Document-Grounded Facts ─── */}
       <section className="tier-section tier-a" aria-labelledby="tier-a-heading">
         <div className="tier-badge tier-a-badge" aria-hidden="true">

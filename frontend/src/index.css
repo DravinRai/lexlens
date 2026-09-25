@@ -17,7 +17,7 @@
   /* Text */
   --text-primary: #f0f2f8;
   --text-secondary: #9ba4bf;
-  --text-muted: #5f6a85;
+  --text-muted: #8891ab;
   --text-accent: #7c8fff;
 
   /* Accents */
@@ -517,7 +517,6 @@ h3 { font-size: 1.35rem; }
 
 .form-group select:focus,
 .form-group input:focus {
-  outline: none;
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
@@ -655,8 +654,8 @@ h3 { font-size: 1.35rem; }
 }
 
 .chat-input:focus {
-  outline: none;
   border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 .chat-input::placeholder {
@@ -939,3 +938,55 @@ h3 { font-size: 1.35rem; }
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* ─── Accessibility ───────────────────────────────────── */
+
+/* Screen-reader-only text — visible to assistive tech, hidden visually */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Visible focus ring on ALL interactive elements.
+   Uses :focus-visible so it only shows on keyboard navigation,
+   not on mouse clicks. */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* Enhanced focus for chat input */
+.chat-input:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 0;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Nav tab focus */
+.nav-tab:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
+}
+
+/* Upload zone focus */
+.upload-zone:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-color: var(--accent-primary);
+}
+

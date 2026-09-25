@@ -38,7 +38,7 @@ export default function ChatView({ onSendMessage, chatHistory, isLoading }) {
         Each answer cites the relevant section. For legal advice, consult a professional.
       </p>
 
-      <div className="chat-container" role="log" aria-label="Chat conversation">
+      <div className="chat-container" role="log" aria-label="Chat conversation" aria-live="polite">
         <div className="chat-messages">
           {chatHistory.length === 0 && (
             <div style={{ textAlign: "center", color: "var(--text-muted)", padding: "2rem 0" }}>
@@ -82,8 +82,9 @@ export default function ChatView({ onSendMessage, chatHistory, isLoading }) {
           ))}
 
           {isLoading && (
-            <div className="chat-message assistant">
+            <div className="chat-message assistant" role="status" aria-label="LexLens is thinking">
               <div className="spinner" style={{ width: "20px", height: "20px", borderWidth: "2px" }} />
+              <span className="sr-only">Generating response...</span>
             </div>
           )}
 

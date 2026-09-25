@@ -5,6 +5,9 @@ Deliberate design decision: NO disk persistence.
 Document content is held only in memory, keyed by random session IDs,
 and auto-expired after a configurable TTL. This is documented in the
 README under "Security & Privacy."
+
+When sessions are deleted or expire, all document data (text, chunks,
+analysis, chat history) is explicitly cleared from memory.
 """
 
 import time
@@ -48,6 +51,7 @@ class SessionStore:
             if session is None:
                 return None
             if time.time() - session["last_accessed"] > self._ttl:
+                self._clear_session_data(session)
                 del self._store[session_id]
                 return None
             session["last_accessed"] = time.time()
@@ -65,9 +69,17 @@ class SessionStore:
         return True
 
     def delete(self, session_id: str) -> None:
-        """Explicitly delete a session."""
+        """
+        Explicitly delete a session and clear all associated data from memory.
+
+        Sets all document-related fields to None/empty before deleting
+        the session dict, ensuring text and analysis data doesn't linger
+        in memory waiting for garbage collection.
+        """
         with self._lock:
-            self._store.pop(session_id, None)
+            session = self._store.pop(session_id, None)
+            if session:
+                self._clear_session_data(session)
 
     def cleanup_expired(self) -> int:
         """Remove all expired sessions. Returns count of removed sessions."""
@@ -79,7 +91,8 @@ class SessionStore:
                 if now - data["last_accessed"] > self._ttl
             ]
             for sid in expired_ids:
-                del self._store[sid]
+                session = self._store.pop(sid)
+                self._clear_session_data(session)
                 removed += 1
         return removed
 
@@ -88,3 +101,21 @@ class SessionStore:
         self.cleanup_expired()
         with self._lock:
             return len(self._store)
+
+    @staticmethod
+    def _clear_session_data(session: dict) -> None:
+        """
+        Explicitly clear all document data from a session dict.
+
+        This ensures document text, chunks, analysis results, and
+        chat history are set to None/empty immediately, rather than
+        relying solely on garbage collection timing.
+        """
+        session["text"] = None
+        session["text_b"] = None
+        session["chunks"] = []
+        session["chunks_b"] = []
+        session["analysis"] = None
+        session["chat_history"] = []
+        session["jurisdiction_ref"] = None
+        session["doc_type"] = None

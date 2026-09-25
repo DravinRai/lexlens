@@ -7,14 +7,19 @@ Main entry point for the backend API. Handles:
 - Clause extraction, risk tagging, and Tier A/B analysis
 - Jurisdiction-aware checklist and Q&A
 - Document comparison
+- Rate limiting, CORS scoping, and secure error handling
 """
 
 import json
+import logging
 import os
+import time
+from collections import defaultdict
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, UploadFile, File, HTTPException, Form
+from fastapi import FastAPI, UploadFile, File, HTTPException, Form, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 try:
@@ -40,13 +45,15 @@ except ImportError:
 
 load_dotenv()
 
+logger = logging.getLogger(__name__)
+
 app = FastAPI(
     title="LexLens API",
     description="GenAI Legal Document Assistant — informs and assists, never replaces a licensed attorney.",
     version="1.0.0",
 )
 
-# Build CORS allowed origins list
+# ─── CORS: scoped to specific origins only ─────────────────
 _cors_origins = [
     "http://localhost:5173",
     "http://localhost:3000",
@@ -60,8 +67,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=_cors_origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "DELETE"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 # In-memory session store — no disk persistence (privacy by design)
@@ -72,6 +79,62 @@ max_upload_str = os.getenv("MAX_UPLOAD_SIZE")
 max_upload_size = int(max_upload_str) if max_upload_str else 2 * 1024 * 1024
 
 sessions = SessionStore(ttl_seconds=session_ttl)
+
+
+# ─── Rate Limiting ─────────────────────────────────────────
+# Simple in-memory rate limiter: max N requests per window per IP.
+
+_rate_limit_store: dict[str, list[float]] = defaultdict(list)
+_RATE_LIMIT_WINDOW = 60  # seconds
+_RATE_LIMIT_MAX_REQUESTS = 30  # max requests per IP per window
+
+
+def _check_rate_limit(client_ip: str) -> bool:
+    """
+    Returns True if the request is within rate limits, False otherwise.
+    Cleans up expired timestamps on each check.
+    """
+    now = time.time()
+    window_start = now - _RATE_LIMIT_WINDOW
+
+    # Prune old entries
+    _rate_limit_store[client_ip] = [
+        t for t in _rate_limit_store[client_ip] if t > window_start
+    ]
+
+    if len(_rate_limit_store[client_ip]) >= _RATE_LIMIT_MAX_REQUESTS:
+        return False
+
+    _rate_limit_store[client_ip].append(now)
+    return True
+
+
+# ─── Global Error Handler ──────────────────────────────────
+# Prevents stack traces, file paths, and internal details from leaking
+# to the client in production.
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """Catch unhandled exceptions and return a safe error response."""
+    logger.exception("Unhandled exception on %s %s", request.method, request.url.path)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "An internal error occurred. Please try again."},
+    )
+
+
+# ─── Rate Limit Middleware ─────────────────────────────────
+
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next):
+    """Apply per-IP rate limiting to all API endpoints."""
+    client_ip = request.client.host if request.client else "unknown"
+    if not _check_rate_limit(client_ip):
+        return JSONResponse(
+            status_code=429,
+            content={"detail": "Too many requests. Please slow down."},
+        )
+    return await call_next(request)
 
 
 # ─── Request/Response Models ───────────────────────────────
@@ -111,7 +174,7 @@ async def health():
 @app.post("/api/upload")
 async def upload_document(
     file: UploadFile = File(...),
-    slot: str = Form(default="a"),  # "a" for primary doc, "b" for comparison doc
+    slot: str = Form(default="a"),
 ):
     """
     Upload a document for analysis. Extracts text in memory — no disk persistence.
@@ -120,28 +183,23 @@ async def upload_document(
     """
     file_bytes = await file.read()
 
-    # Validate
+    # Server-side validation: type and size checked here regardless of client
     error = validate_file(file.filename, len(file_bytes), max_upload_size)
     if error:
         raise HTTPException(status_code=400, detail=error)
 
-    # Extract text
     try:
         text = extract_text(file_bytes, file.filename)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to extract text: {str(e)}")
+    except Exception:
+        raise HTTPException(status_code=400, detail="Failed to extract text from this file.")
 
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text content could be extracted from this file.")
 
     chunks = chunk_text(text)
 
-    # Create or reuse session
-    # For slot "a", always create new session
-    # For slot "b", expect session_id in form data — but for simplicity,
-    # we'll handle it via a separate endpoint
     session_id = sessions.create_session()
 
     if slot == "a":
@@ -177,6 +235,8 @@ async def upload_comparison_document(
         text = extract_text(file_bytes, file.filename)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except Exception:
+        raise HTTPException(status_code=400, detail="Failed to extract text from this file.")
 
     if not text.strip():
         raise HTTPException(status_code=400, detail="No text content could be extracted from this file.")
@@ -265,6 +325,9 @@ async def analyze_document(request: AnalyzeRequest):
     Tier A summary, Tier B jurisdictional context, and checklist.
 
     Requires prior classification and jurisdiction selection.
+
+    Returns cached analysis if already computed for this session,
+    avoiding redundant LLM calls.
     """
     session = sessions.get(request.session_id)
     if not session:
@@ -274,6 +337,10 @@ async def analyze_document(request: AnalyzeRequest):
     if not session["doc_type"]:
         raise HTTPException(status_code=400, detail="Document not yet classified. Call /api/classify first.")
 
+    # Return cached analysis if already computed for this session
+    if session.get("analysis"):
+        return session["analysis"]
+
     doc_type = session["doc_type"]
     jurisdiction = session.get("jurisdiction", "Unknown")
     jurisdiction_ref = session.get("jurisdiction_ref")
@@ -281,30 +348,16 @@ async def analyze_document(request: AnalyzeRequest):
     # Load taxonomy for this document type
     taxonomy = load_taxonomy(doc_type)
 
-    # Tier A: Extract clauses and risk-tag them
-    tier_a = await llm.extract_and_risk_tag(session["text"], taxonomy)
-
-    # Tier B: Jurisdictional context (real branch: ref data or honest fallback)
-    tier_b = await llm.generate_tier_b(
+    # Run full analysis with Tier B + Checklist in parallel
+    analysis = await llm.run_full_analysis(
+        document_text=session["text"],
+        taxonomy=taxonomy,
         jurisdiction_ref=jurisdiction_ref,
         jurisdiction_name=jurisdiction,
-        clauses_json=json.dumps(tier_a.get("clauses", []), indent=2),
-    )
-
-    # Checklist: tailored by doc type + jurisdiction availability
-    checklist = await llm.generate_checklist(
         doc_type=doc_type,
-        jurisdiction=jurisdiction,
-        jurisdiction_ref=jurisdiction_ref,
-        clauses_json=json.dumps(tier_a.get("clauses", []), indent=2),
     )
 
     # Store analysis in session for Q&A grounding
-    analysis = {
-        "tier_a": tier_a,
-        "tier_b": tier_b,
-        "checklist": checklist,
-    }
     sessions.update(request.session_id, analysis=analysis)
 
     return analysis
@@ -345,6 +398,9 @@ async def chat(request: ChatRequest):
     """
     Grounded Q&A: answers ONLY from document + jurisdiction reference.
     Never from general model knowledge. Cites sections. Refuses legal opinions.
+
+    Uses chunk-based retrieval when available, sending only the most relevant
+    document sections instead of the entire text on every message.
     """
     session = sessions.get(request.session_id)
     if not session:
@@ -359,6 +415,7 @@ async def chat(request: ChatRequest):
         document_text=session["text"],
         jurisdiction_ref=session.get("jurisdiction_ref"),
         chat_history=chat_history,
+        chunks=session.get("chunks"),
     )
 
     # Update chat history in session

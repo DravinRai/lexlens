@@ -176,7 +176,7 @@ export default function App() {
                   <div className="step-number">
                     {isCompleted ? <CheckCircle size={14} /> : <StepIcon size={14} />}
                   </div>
-                  <span style={{ display: "none" }}>{step.label}</span>
+                  <span className="sr-only">{step.label}</span>
                 </div>
                 {i < STEPS.length - 1 && (
                   <div className={`step-connector ${isCompleted ? "completed" : ""}`} />
@@ -211,7 +211,7 @@ export default function App() {
 
         {/* ─── Error Display ─── */}
         {error && (
-          <div className="card animate-in" style={{
+          <div className="card animate-in" role="alert" aria-live="assertive" style={{
             background: "var(--risk-high-bg)",
             border: "1px solid var(--risk-high-border)",
             marginBottom: "1rem",
@@ -225,8 +225,8 @@ export default function App() {
 
         {/* ─── Loading State ─── */}
         {isLoading && currentStep !== "analyze" && (
-          <div className="loading-spinner">
-            <div className="spinner" />
+          <div className="loading-spinner" role="status" aria-live="polite">
+            <div className="spinner" aria-hidden="true" />
             <p className="loading-text">{loadingMessage || "Processing..."}</p>
           </div>
         )}
@@ -252,7 +252,7 @@ export default function App() {
         {currentStep === "analyze" && (
           <>
             {/* Tab Navigation */}
-            <nav className="nav-tabs" aria-label="Analysis views">
+            <nav className="nav-tabs" role="tablist" aria-label="Analysis views">
               {TABS.map((tab) => {
                 const TabIcon = tab.icon;
                 const disabled = tab.key === "compare" && !comparison;
@@ -274,8 +274,8 @@ export default function App() {
 
             {/* Loading during analysis */}
             {isLoading && (
-              <div className="loading-spinner">
-                <div className="spinner" />
+              <div className="loading-spinner" role="status" aria-live="polite">
+                <div className="spinner" aria-hidden="true" />
                 <p className="loading-text">{loadingMessage || "Analyzing..."}</p>
               </div>
             )}
